@@ -1,9 +1,10 @@
 { lib
 , yamlLib
 , stdenv
-, fetchurl
-, runCommand
 , dart
+, fetchzip
+, makeWrapper
+, runCommand
 }:
 
 { pname
@@ -38,7 +39,7 @@ let
             pubCachePathParent
             "${package.description.name}-${package.version}"
           ];
-          nixStorePath = fetchurl {
+          nixStorePath = fetchzip {
             inherit (package) sha256;
             stripRoot = false;
             url = lib.concatStringsSep "/" [
@@ -94,6 +95,8 @@ let
 in
 stdenv.mkDerivation ({
   PUB_CACHE = "${pubCache}";
+
+  nativeBuildInputs = (args.nativeBuildInputs or []) ++ [ makeWrapper ];
 
   buildInputs = (args.buildInputs or []) ++ [ dart ];
 
