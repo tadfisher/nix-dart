@@ -12,17 +12,16 @@
 
   outputs = { self, flake-utils, nixpkgs, pub2nix }:
     let
-      buildDartPackage = pkgs:
+      builder = pkgs:
         let
           yamlLib = import "${pub2nix}/yaml.nix" { inherit pkgs; };
         in
         pkgs.callPackage ./build.nix { inherit yamlLib; };
     in
     {
-      overlay = final: prev: rec {
-        buildDartPackage = buildDartPackage final;
-        dart = dart-stable;
-        dart-stable = final.callPackage ./pkgs/dart { channel = "stable"; };
+      overlay = final: prev: {
+        buildDartPackage = builder final;
+        dart = final.callPackage ./pkgs/dart { channel = "stable"; };
         dart-beta = final.callPackage ./pkgs/dart { channel = "beta"; };
         dart-dev = final.callPackage ./pkgs/dart { channel = "dev"; };
         pub2nix-lock = import "${pub2nix}/lock.nix" { pkgs = final; };
@@ -34,11 +33,10 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        builders.buildDartPackage = buildDartPackage pkgs;
+        builders.buildDartPackage = builder pkgs;
 
         packages = rec {
-          dart = dart-stable;
-          dart-stable = pkgs.callPackage ./pkgs/dart { channel = "stable"; };
+          dart = pkgs.callPackage ./pkgs/dart { channel = "stable"; };
           dart-beta = pkgs.callPackage ./pkgs/dart { channel = "beta"; };
           dart-dev = pkgs.callPackage ./pkgs/dart { channel = "dev"; };
           pub2nix-lock = import "${pub2nix}/lock.nix" { inherit pkgs; };
