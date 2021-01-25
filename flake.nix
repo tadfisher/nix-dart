@@ -16,11 +16,15 @@
         let
           yamlLib = import "${pub2nix}/yaml.nix" { inherit pkgs; };
         in
-          pkgs.callPackage ./build.nix { inherit yamlLib; };
+        pkgs.callPackage ./build.nix { inherit yamlLib; };
     in
     {
-      overlay = final: prev: {
+      overlay = final: prev: rec {
         buildDartPackage = buildDartPackage final;
+        dart = dart-stable;
+        dart-stable = final.callPackage ./pkgs/dart { channel = "stable"; };
+        dart-beta = final.callPackage ./pkgs/dart { channel = "beta"; };
+        dart-dev = final.callPackage ./pkgs/dart { channel = "dev"; };
         pub2nix-lock = import "${pub2nix}/lock.nix" { pkgs = final; };
       };
     }
@@ -28,9 +32,17 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-      in {
+      in
+      {
         builders.buildDartPackage = buildDartPackage pkgs;
-        packages.pub2nix-lock = import "${pub2nix}/lock.nix" { inherit pkgs; };
+
+        packages = rec {
+          dart = dart-stable;
+          dart-stable = pkgs.callPackage ./pkgs/dart { channel = "stable"; };
+          dart-beta = pkgs.callPackage ./pkgs/dart { channel = "beta"; };
+          dart-dev = pkgs.callPackage ./pkgs/dart { channel = "dev"; };
+          pub2nix-lock = import "${pub2nix}/lock.nix" { inherit pkgs; };
+        };
       }
     );
 }
