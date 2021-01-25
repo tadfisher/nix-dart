@@ -21,7 +21,6 @@
 
 assert builtins.pathExists specFile;
 assert builtins.pathExists lockFile;
-
 let
   specFile' = yamlLib.readYAML specFile;
   lockFile' = yamlLib.readYAML lockFile;
@@ -51,20 +50,20 @@ let
             ];
           };
         in
-          state + ''
-            mkdir -p ${pubCachePathParent}
-            ln -s ${nixStorePath} ${pubCachePath}
-          ''
+        state + ''
+          mkdir -p ${pubCachePathParent}
+          ln -s ${nixStorePath} ${pubCachePath}
+        ''
       );
 
       synthesize =
         builtins.foldl' step "" (builtins.attrValues lockFile'.packages);
     in
-      runCommand "${pname}-pub-cache" { } synthesize;
+    runCommand "${pname}-pub-cache" { } synthesize;
 
   dartOpts = with stdenv.lib;
     concatStringsSep " " ((optional (buildType == "debug") "--enable-asserts")
-                          ++ [ "-Dversion=${version}" ] ++ dartFlags);
+      ++ [ "-Dversion=${version}" ] ++ dartFlags);
 
   executables = specFile'.executables or { };
 
@@ -77,28 +76,29 @@ let
         '';
       steps = mapAttrsToList buildSnapshot executables;
     in
-      concatStringsSep "\n" steps;
+    concatStringsSep "\n" steps;
 
-  installSnapshots = let
-    inherit (builtins) attrNames;
-    inherit (stdenv.lib) concatStringsSep mapAttrsToList;
-    installSnapshot = name: ''
-      cp "${buildDir}/${name}.snapshot" "$out/lib/dart/${pname}/"
-      makeWrapper "${dart}/bin/dart" "$out/bin/${name}" \
-        --argv0 "${name}" \
-        --add-flags "$out/lib/dart/${pname}/${name}.snapshot"
-    '';
-    steps = map installSnapshot (attrNames executables);
-  in
+  installSnapshots =
+    let
+      inherit (builtins) attrNames;
+      inherit (stdenv.lib) concatStringsSep mapAttrsToList;
+      installSnapshot = name: ''
+        cp "${buildDir}/${name}.snapshot" "$out/lib/dart/${pname}/"
+        makeWrapper "${dart}/bin/dart" "$out/bin/${name}" \
+          --argv0 "${name}" \
+          --add-flags "$out/lib/dart/${pname}/${name}.snapshot"
+      '';
+      steps = map installSnapshot (attrNames executables);
+    in
     concatStringsSep "\n" steps;
 
 in
 stdenv.mkDerivation ({
   PUB_CACHE = "${pubCache}";
 
-  nativeBuildInputs = (args.nativeBuildInputs or []) ++ [ makeWrapper ];
+  nativeBuildInputs = (args.nativeBuildInputs or [ ]) ++ [ makeWrapper ];
 
-  buildInputs = (args.buildInputs or []) ++ [ dart ];
+  buildInputs = (args.buildInputs or [ ]) ++ [ dart ];
 
   buildPhase = args.buildPhase or ''
     runHook preBuild

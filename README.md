@@ -49,6 +49,13 @@ buildDartPackage rec {
 }
 ```
 
+Up-to-date Dart SDK packages are available in `packages.${system}`: `dart`, `dart-beta`, and
+`dart-dev`. These are checked daily and updated via CI.
+
+`buildDartPackage`, `pub2nix-lock`, and the Dart SDK packages are also available in `overlay`.
+
+A binary cache is available at [nix-dart.cachix.org](https://nix-dart.cachix.org).
+
 ## Thanks
 
 Thanks to [Paul Young](https://github.com/paulyoung) for creating
