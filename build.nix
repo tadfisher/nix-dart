@@ -61,7 +61,7 @@ let
     in
     runCommand "${pname}-pub-cache" { } synthesize;
 
-  dartOpts = with stdenv.lib;
+  dartOpts = with lib;
     concatStringsSep " " ((optional (buildType == "debug") "--enable-asserts")
       ++ [ "-Dversion=${version}" ] ++ dartFlags);
 
@@ -69,9 +69,9 @@ let
 
   buildSnapshots =
     let
-      inherit (stdenv.lib) concatStringsSep mapAttrsToList;
+      inherit (lib) concatStringsSep mapAttrsToList;
       buildSnapshot = name: path:
-        with stdenv.lib; ''
+        with lib; ''
           dart ${dartOpts} --snapshot="${buildDir}/${name}.snapshot" "bin/${path}.dart"
         '';
       steps = mapAttrsToList buildSnapshot executables;
@@ -81,7 +81,7 @@ let
   installSnapshots =
     let
       inherit (builtins) attrNames;
-      inherit (stdenv.lib) concatStringsSep mapAttrsToList;
+      inherit (lib) concatStringsSep mapAttrsToList;
       installSnapshot = name: ''
         cp "${buildDir}/${name}.snapshot" "$out/lib/dart/${pname}/"
         makeWrapper "${dart}/bin/dart" "$out/bin/${name}" \

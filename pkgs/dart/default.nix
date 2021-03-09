@@ -1,6 +1,6 @@
-{ stdenv, fetchurl, unzip, channel ? "stable" }:
+{ lib, stdenv, fetchurl, unzip, channel ? "stable" }:
 
-with stdenv.lib;
+with lib;
 
 let
   source =
