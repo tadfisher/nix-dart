@@ -6,6 +6,7 @@ cd $(dirname "$0")
 CHANNELS=(stable beta dev)
 declare -A PLATFORMS=(
     [macos-x64]=x86_64-darwin
+    [macos-arm64]=aarch64-darwin
     [linux-ia32]=i686-linux
     [linux-x64]=x86_64-linux
     [linux-arm]=armv7l-linux
