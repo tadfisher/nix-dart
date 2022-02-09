@@ -1,87 +1,87 @@
 [
   {
     "channel": "stable",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "aarch64-darwin",
-    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.0/sdk/dartsdk-macos-arm64-release.zip",
-    "sha256": "0jqrygr3mv4q1x2knm4dixy94s39dhazxklbk72p4vwr9kis6r6s"
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.1/sdk/dartsdk-macos-arm64-release.zip",
+    "sha256": "0cadnrbwnj1653csvdr30b6zw5a08jcjil91hcsi16vbfinm26gi"
   },
   {
     "channel": "stable",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "aarch64-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.0/sdk/dartsdk-linux-arm64-release.zip",
-    "sha256": "02q68kyh5af47gf0dlaksf4jby0d4ai309i0blk40yia87c8rq1l"
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.1/sdk/dartsdk-linux-arm64-release.zip",
+    "sha256": "1gmq7wz74r6gwk0a9fkrdzvli7bxbfpnbm9b36ykpy37hd91r7fy"
   },
   {
     "channel": "stable",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "x86_64-darwin",
-    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.0/sdk/dartsdk-macos-x64-release.zip",
-    "sha256": "0zxnw91pcx83c20pxydqxacb32mj933md5gx3b6dw8bsf89iqrby"
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.1/sdk/dartsdk-macos-x64-release.zip",
+    "sha256": "0hmpicl0jqi23mdg0jypnjc8avdlx362g1h3yrxqxrrcfngmnnsw"
   },
   {
     "channel": "stable",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "i686-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.0/sdk/dartsdk-linux-ia32-release.zip",
-    "sha256": "0v4j7ixjbm4q9q2dzicd45k8b0ypppvi5wgfdc95jjzmdknvs5lh"
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.1/sdk/dartsdk-linux-ia32-release.zip",
+    "sha256": "1h7xsbcgbgffyblglrgr20yiny9bn8rgm7nllzff3kmdqsr1by62"
   },
   {
     "channel": "stable",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "armv7l-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.0/sdk/dartsdk-linux-arm-release.zip",
-    "sha256": "0szmfhr7sj0hqc8mjd0v564nhlhmr7yxy7wki662s7v6p58hfhmj"
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.1/sdk/dartsdk-linux-arm-release.zip",
+    "sha256": "1cxjhp9yja33h2kx1kk1krhngkabhcaxp2y7rrprbbdk2qvi9q0n"
   },
   {
     "channel": "stable",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "x86_64-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.0/sdk/dartsdk-linux-x64-release.zip",
-    "sha256": "1lv8gwyj4gi18ysa33cs61p97kj3q7f5yzz424i2vr9d4gg6ps4z"
+    "url": "https://storage.googleapis.com/dart-archive/channels/stable/release/2.16.1/sdk/dartsdk-linux-x64-release.zip",
+    "sha256": "0nfli2gzayngxxfz60nwkyrl0062vi1khwvijvmwa2sh4463miiw"
   },
   {
     "channel": "beta",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "aarch64-darwin",
-    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.0/sdk/dartsdk-macos-arm64-release.zip",
-    "sha256": "0jqrygr3mv4q1x2knm4dixy94s39dhazxklbk72p4vwr9kis6r6s"
+    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.1/sdk/dartsdk-macos-arm64-release.zip",
+    "sha256": "0cadnrbwnj1653csvdr30b6zw5a08jcjil91hcsi16vbfinm26gi"
   },
   {
     "channel": "beta",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "aarch64-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.0/sdk/dartsdk-linux-arm64-release.zip",
-    "sha256": "02q68kyh5af47gf0dlaksf4jby0d4ai309i0blk40yia87c8rq1l"
+    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.1/sdk/dartsdk-linux-arm64-release.zip",
+    "sha256": "1gmq7wz74r6gwk0a9fkrdzvli7bxbfpnbm9b36ykpy37hd91r7fy"
   },
   {
     "channel": "beta",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "x86_64-darwin",
-    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.0/sdk/dartsdk-macos-x64-release.zip",
-    "sha256": "0zxnw91pcx83c20pxydqxacb32mj933md5gx3b6dw8bsf89iqrby"
+    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.1/sdk/dartsdk-macos-x64-release.zip",
+    "sha256": "0hmpicl0jqi23mdg0jypnjc8avdlx362g1h3yrxqxrrcfngmnnsw"
   },
   {
     "channel": "beta",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "i686-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.0/sdk/dartsdk-linux-ia32-release.zip",
-    "sha256": "0v4j7ixjbm4q9q2dzicd45k8b0ypppvi5wgfdc95jjzmdknvs5lh"
+    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.1/sdk/dartsdk-linux-ia32-release.zip",
+    "sha256": "1h7xsbcgbgffyblglrgr20yiny9bn8rgm7nllzff3kmdqsr1by62"
   },
   {
     "channel": "beta",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "armv7l-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.0/sdk/dartsdk-linux-arm-release.zip",
-    "sha256": "0szmfhr7sj0hqc8mjd0v564nhlhmr7yxy7wki662s7v6p58hfhmj"
+    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.1/sdk/dartsdk-linux-arm-release.zip",
+    "sha256": "1cxjhp9yja33h2kx1kk1krhngkabhcaxp2y7rrprbbdk2qvi9q0n"
   },
   {
     "channel": "beta",
-    "version": "2.16.0",
+    "version": "2.16.1",
     "platform": "x86_64-linux",
-    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.0/sdk/dartsdk-linux-x64-release.zip",
-    "sha256": "1lv8gwyj4gi18ysa33cs61p97kj3q7f5yzz424i2vr9d4gg6ps4z"
+    "url": "https://storage.googleapis.com/dart-archive/channels/beta/release/2.16.1/sdk/dartsdk-linux-x64-release.zip",
+    "sha256": "0nfli2gzayngxxfz60nwkyrl0062vi1khwvijvmwa2sh4463miiw"
   },
   {
     "channel": "dev",
