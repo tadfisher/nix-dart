@@ -110,7 +110,7 @@ stdenv.mkDerivation ({
 
     (
     set -x
-    pub get --no-precompile --offline
+    dart pub get --no-precompile --offline
     ${buildSnapshots}
     )
 
