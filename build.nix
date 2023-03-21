@@ -3,7 +3,6 @@
 , stdenv
 , dart
 , fetchzip
-, makeWrapper
 , runCommand
 }:
 
@@ -93,7 +92,10 @@ in
 stdenv.mkDerivation ({
   PUB_CACHE = "${pubCache}";
 
-  nativeBuildInputs = (args.nativeBuildInputs or [ ]) ++ [ makeWrapper dart ];
+  # Dart binaries are broken if stripped
+  dontStrip = true;
+
+  nativeBuildInputs = (args.nativeBuildInputs or [ ]) ++ [ dart ];
 
   buildInputs = (args.buildInputs or [ ]);
 
