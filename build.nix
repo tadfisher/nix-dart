@@ -3,7 +3,6 @@
 , stdenv
 , dart
 , fetchzip
-, makeWrapper
 , runCommand
 }:
 
@@ -66,29 +65,26 @@ let
       ++ [ "-Dversion=${version}" ] ++ dartFlags);
 
   executables = specFile'.executables or { };
-
-  buildSnapshots =
+  
+  buildBinaries =
     let
       inherit (lib) concatStringsSep mapAttrsToList;
-      buildSnapshot = name: path:
+      buildBin = name: path:
         with lib; ''
-          dart ${dartOpts} --snapshot="${buildDir}/${name}.snapshot" "bin/${path}.dart"
+          dart ${dartOpts} compile exe -o "${buildDir}/${name}" "bin/${path}.dart"
         '';
-      steps = mapAttrsToList buildSnapshot executables;
+      steps = mapAttrsToList buildBin executables;
     in
     concatStringsSep "\n" steps;
-
-  installSnapshots =
+  
+  installBinaries =
     let
       inherit (builtins) attrNames;
       inherit (lib) concatStringsSep mapAttrsToList;
-      installSnapshot = name: ''
-        cp "${buildDir}/${name}.snapshot" "$out/lib/dart/${pname}/"
-        makeWrapper "${dart}/bin/dart" "$out/bin/${name}" \
-          --argv0 "${name}" \
-          --add-flags "$out/lib/dart/${pname}/${name}.snapshot"
+      installBin = name: ''
+        cp "${buildDir}/${name}" "$out/bin/${name}"
       '';
-      steps = map installSnapshot (attrNames executables);
+      steps = map installBin (attrNames executables);
     in
     concatStringsSep "\n" steps;
 
@@ -96,9 +92,12 @@ in
 stdenv.mkDerivation ({
   PUB_CACHE = "${pubCache}";
 
-  nativeBuildInputs = (args.nativeBuildInputs or [ ]) ++ [ makeWrapper ];
+  # Dart binaries are broken if stripped
+  dontStrip = true;
 
-  buildInputs = (args.buildInputs or [ ]) ++ [ dart ];
+  nativeBuildInputs = (args.nativeBuildInputs or [ ]) ++ [ dart ];
+
+  buildInputs = (args.buildInputs or [ ]);
 
   buildPhase = args.buildPhase or ''
     runHook preBuild
@@ -110,8 +109,8 @@ stdenv.mkDerivation ({
 
     (
     set -x
-    pub get --no-precompile --offline
-    ${buildSnapshots}
+    dart pub get --no-precompile --offline
+    ${buildBinaries}
     )
 
     runHook postBuild
@@ -120,8 +119,8 @@ stdenv.mkDerivation ({
   installPhase = args.installPhase or ''
     runHook preInstall
 
-    mkdir -p $out/bin $out/lib/dart/${pname}
-    ${installSnapshots}
+    mkdir -p $out/bin
+    ${installBinaries}
 
     runHook postInstall
   '';
